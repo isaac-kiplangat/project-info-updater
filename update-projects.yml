@@ -1,0 +1,25 @@
+name: Update Projects
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run every day
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update projects JSON
+        run: node update-projects.js  # Update to the correct path
+
+      # Add additional steps as needed
